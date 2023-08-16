@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+
+  finanzas-wp:
+    build: .
+    depends_on:
+      - postgresql
+    ports:
+      - 8080:80
+    environment:
+      - DB_ENGINE=${DB_ENGINE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+
+  postgresql:
+    image: postgres:14.1-alpine
+    restart: always
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./src/sql/:/docker-entrypoint-initdb.d/
+      - postgresql-volume:/var/lib/postgresql/data
+
+volumes:
+  postgresql-volume:

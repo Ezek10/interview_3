@@ -1,0 +1,6 @@
+[flake8]
+#ignore = E501, W504, E713, F841, W605, E712, E711, F811, F821, E704, E731, W503
+exclude = .git,__pycache__,env,.venv/,.vscode/,htmlcov/,src/privacy_policy.py
+max-line-length = 160
+statistics = True
+show-source = True

@@ -1,0 +1,10 @@
+pytest
+flake8
+black
+fastapi[all]
+pydantic
+pylint
+isort
+psycopg2
+sqlalchemy
+requests
