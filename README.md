@@ -9,11 +9,11 @@ Se puede encontrar las condiciones de la entrevista en "Challenge.txt"
 
 Descarga la imagen
 
-    docker pull ezemarcel/edmachina_app:latest
+    docker pull ezemarcel/interview_3_app:latest
 
 Ahora corre la imagen
 
-    docker run --name talana --rm -p 8000:80 ezemarcel/edmachina_app
+    docker run --name talana --rm -p 8000:80 ezemarcel/interview_3_app
 
 ## Instalación
 
@@ -61,7 +61,7 @@ Copiar el siguiente codigo en .vscode/launch.json
                 ],
                 "console": "integratedTerminal",
                 "justMyCode": true,
-                "envFile": "${workspaceFolder}/.env-dev"
+                "envFile": "${workspaceFolder}/.env"
             }
         ]
     }
