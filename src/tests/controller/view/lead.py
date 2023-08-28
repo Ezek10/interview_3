@@ -61,4 +61,4 @@ class LeadMother:
 
     @staticmethod
     def _create_basic_subject(id: int):
-        return SubjectRegistration(subject_id=id, attempt=id, course_time=10)
+        return SubjectRegistration(subject_id=id, attempt=id)

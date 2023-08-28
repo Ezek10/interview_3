@@ -13,7 +13,7 @@ Descarga la imagen
 
 Ahora corre la imagen
 
-    docker run --name talana --rm -p 8000:80 ezemarcel/interview_3_app
+    docker-compose up
 
 ## Instalación
 
@@ -33,7 +33,7 @@ Instale las dependencias:
 
     pip install -r requirements.txt
 
-## Uso
+## Correr
 
 Para correr el programa corra:
 
@@ -42,6 +42,196 @@ Para correr el programa corra:
 o
 
     make run
+
+## Documentacion Tecnica
+
+Despues de levantar la imagen de Docker puede proceder al siguiente link para revisar la documentacion autogenerada por Swagger:
+
+http://localhost:8080/docs
+
+## Pruebas de uso
+
+Despues de levantar la imagen de Docker, puede probar los siguientes comandos de 2 formas:
+
+Desde la pagina de documentacion en:
+
+http://localhost:8080/docs
+
+O manualmente desde la terminal:
+
+    curl --location 'http://localhost:8080/status'
+
+### POST
+
+Crear carreras nuevas:
+
+    curl --location 'http://localhost:8080/carrers' \
+    --header 'admin-auth: admin' \
+    --header 'Content-Type: application/json' \
+    --data '[
+        {
+            "id": 1,
+            "name": "Ingenieria en Comunicaciones"
+        },
+        {
+            "id": 2,
+            "name": "Ingenieria en Sistemas"
+        },
+        {
+            "id": 3,
+            "name": "Ingenieria en Electronica"
+        },
+        {
+            "id": 4,
+            "name": "Ingenieria Mecanica"
+        }
+    ]'
+
+Crear Materias nuevas:
+
+    curl --location 'http://localhost:8080/subjects' \
+    --header 'admin-auth: admin' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "subjects": [
+            {
+                "id": 1,
+                "name": "Electronica Aplicada 1"
+            },
+            {
+                "id": 2,
+                "name": "Mecanica Aplicada 1"
+            },
+            {
+                "id": 3,
+                "name": "Quimica"
+            },
+            {
+                "id": 4,
+                "name": "Algebra"
+            }
+        ]
+    }'
+
+Crear las curriculas de las carreras:
+
+    curl --location 'http://localhost:8080/curriculas' \
+    --header 'admin-auth: admin' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "curriculas": [
+            {
+                "carrer_id": 1,
+                "subjects_ids": [1,3,4]
+            },
+            {
+                "carrer_id": 2,
+                "subjects_ids": [4]
+            },
+            {
+                "carrer_id": 3,
+                "subjects_ids": [1,3,4]
+            },
+            {
+                "carrer_id": 4,
+                "subjects_ids": [2,3,4]
+            }
+        ]
+    }'
+
+Crear el primer Lead:
+
+    curl --location 'http://localhost:8080/leads' \
+    --header 'Content-Type: application/json' \
+    --data-raw '[
+        {
+            "person": {
+                "name": "Jhon Doe",
+                "email": "JhonDoe@gmail.com",
+                "address": "somewere",
+                "phone": "543512513515"
+            },
+            "subjects": [
+                {
+                    "id": 3,
+                    "attempt": 1
+                },
+                {
+                    "id": 1,
+                    "attempt": 2
+                }
+            ],
+            "carrers":[
+                {
+                    "id": 1,
+                    "registration_year": 2021
+                },
+                {
+                    "id": 2,
+                    "registration_year": 2020
+                }
+            ]
+        }
+    ]'
+
+### GET
+
+Carreras:
+
+    curl --location 'http://localhost:8080/carrers' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Curriculas:
+
+    curl --location 'http://localhost:8080/curriculas?admin-auth=admin' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Materias:
+
+    curl --location 'http://localhost:8080/subjects?admin-auth=admin' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Leads:
+
+    curl --location 'http://localhost:8080/leads?page=1' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Lead:
+
+    curl --location 'http://localhost:8080/leads/lead/1' \
+    --data ''
+
+
+
+### DELETE
+
+Carrera:
+
+    curl --location --request DELETE 'http://localhost:8080/carrers/1' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Curricula:
+
+    curl --location --request DELETE 'http://localhost:8080/curriculas/1?admin-auth=admin' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Materia:
+
+    curl --location --request DELETE 'http://localhost:8080/subjects/1?admin-auth=admin' \
+    --header 'admin-auth: admin' \
+    --data ''
+
+Lead:
+
+    curl --location --request DELETE 'http://localhost:8080/leads/lead/1' \
+    --data ''
+
 
 ## Debbug in VSCode
 

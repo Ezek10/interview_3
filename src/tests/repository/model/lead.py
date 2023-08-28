@@ -41,7 +41,6 @@ class LeadDBMother:
                 person_id=create_from.id,
                 subject_id=subject.subject_id,
                 attempt=subject.attempt,
-                course_time=subject.course_time,
             )
             for subject in create_from.subjects
         ]

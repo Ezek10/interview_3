@@ -17,7 +17,6 @@ class SubjectRegistration(BaseModel):
 
     subject_id: int = Field(ge=1)
     attempt: int = Field(ge=1)
-    course_time: float = Field(ge=1)
 
 
 class CarrerRegistration(BaseModel):

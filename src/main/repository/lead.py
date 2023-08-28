@@ -55,7 +55,6 @@ class LeadRepository:
                     person_id=person_db.id,
                     subject_id=subject.subject_id,
                     attempt=subject.attempt,
-                    course_time=subject.course_time,
                 )
             )
         return person_db.id

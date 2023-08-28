@@ -13,7 +13,6 @@ class SubjectRegistrationDB(Base):
     person_id = Column(Integer, ForeignKey("person.id"), nullable=False)
     subject_id = Column(Integer, ForeignKey("subject.id"), nullable=False)
     attempt = Column(Integer, nullable=False)
-    course_time = Column(Float, nullable=False)
 
     create_at: datetime = Field(default_factory=datetime.now)
     modified_at: datetime = Field(
