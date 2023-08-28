@@ -4,7 +4,12 @@ black
 fastapi[all]
 pydantic
 pylint
-isort
 psycopg2
 sqlalchemy
-requests
+asyncpg
+anyio
+asyncmock
+asyncio
+trio
+pytest-asyncio
+pytest-cov

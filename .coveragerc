@@ -2,8 +2,7 @@
 branch = True
 source = src/main
 [report]
-fail_under = 50
-skip_covered = True
+fail_under = 95
 [html]
 directory = htmlcov
 [xml]
